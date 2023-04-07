@@ -1,0 +1,10 @@
+# The following file extensions and directories will be ignored:
+
+*.user
+*.o
+*.obj
+*.exe
+*.txt
+
+
+build-*/
