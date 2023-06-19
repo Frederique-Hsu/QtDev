@@ -1,0 +1,3 @@
+[submodule "Qt6ModernCpp"]
+	path = Qt6ModernCpp
+	url = git@github.com:PacktPublishing/Cross-Platform-Development-with-Qt-6-and-Modern-Cpp.git

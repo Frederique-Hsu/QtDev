@@ -8,3 +8,8 @@
 
 
 build-*/
+reference/
+Qt6QML_Showcases/
+BasicEditor/
+CustomizeUserWidget/
+Hello*/
