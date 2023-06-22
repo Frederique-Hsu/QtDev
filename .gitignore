@@ -5,6 +5,7 @@
 *.obj
 *.exe
 *.txt
+*.tgz
 
 
 build-*/
@@ -13,3 +14,6 @@ Qt6QML_Showcases/
 BasicEditor/
 CustomizeUserWidget/
 Hello*/
+QT5.9Samp*/
+FancyWidgetApp/
+LayoutWidgets/
