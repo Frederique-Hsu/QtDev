@@ -11,13 +11,20 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    ui_mainwindow.cpp
+    resultdialog.cpp \
+    ui_mainwindow.cpp \
+    ui_resultdialog.cpp
 
 HEADERS += \
     mainwindow.hpp \
-    ui_mainwindow.hpp
+    resultdialog.hpp \
+    ui_mainwindow.hpp \
+    ui_resultdialog.hpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
