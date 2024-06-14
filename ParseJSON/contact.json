@@ -1,0 +1,21 @@
+{
+    "firstName": "John",
+    "lastName": "Smith",
+    "age": 42,
+    "address": {
+        "streetAddress": "14 2nd Street",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10021-3100"
+    },
+    "phoneNumbers": [
+        {
+            "type": "home",
+            "number": "212 686-7890"
+        },
+        {
+            "type": "mobile",
+            "number": "321 456-7788"
+        }
+    ]
+}

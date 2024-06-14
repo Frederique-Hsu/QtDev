@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>contact.json</file>
+    </qresource>
+</RCC>
