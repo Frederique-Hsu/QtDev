@@ -1,0 +1,30 @@
+Accessing files using Qt
+
+Files are basically digital information stored in the form of byte stream that reside somewhere in
+your hard disk. If your program needs to save or load data, such as for word processing, image
+editing, media streaming, or program configuration, you will need to access the files stored on your
+local hard driver. Qt provides us with classes that allow us to easily access the filesystem
+regardless of the type of operating system.
+
+Qt encapsulates the more generalized notion of byte stream in its QIODevice class, which is the
+parent class for QFile, as well as network I/O classes such as QTcpSocket. We don't directly create
+a QIODevice instance, of course, but instead create something such as a QFile subclass and then
+work with the QFile instance directly to read from and write to the file.
+
+INFO: Files and network access usually take time, and thus your applications should not work with
+      them on the main thread. Consider creating a subclass of QThread to perform I/O operations
+      such as reading from files or accessing the network.
+
+To begin working with a file, we first must open it using the open method. The open method takes a
+single argument, the manner in which the file should be opened, which is a bitwise combination of
+the following:
+
+    - QIODevice::ReadOnly   This is used for read-only access
+    - QIODevice::WriteOnly  This is used for write-only access
+    - QIODevice::ReadWrite  This is used for read-and-write access
+    - QIODevice::Append     This is used to only append to the file.
+    - QIODevice::Truncate   This is used to truncate the file, discarding all previous contents
+                            before writing.
+    - QIODevice::Text       This is used to treat the file as text, converting new-line characters
+                            to the platform representation during reading and writing.
+    - QIODevice::Unbuffered This is used to bypass any buffering the input and output.
