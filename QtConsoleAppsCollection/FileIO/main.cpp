@@ -1,41 +1,37 @@
 /*!
  *  \file       main.cpp
- *  \brief
+ *  \brief      Read a CSV file from local directory and loop over the rows to extract the cells
  *
  */
 
-
-
 #include <QtCore>
 
-QTextStream cout(stdout, QIODevice::WriteOnly);
+namespace Qt
+{
+    QTextStream cout(stdout, QIODevice::WriteOnly);
+    QTextStream cin(stdin, QIODevice::ReadOnly);
+}
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     Q_UNUSED(argc);
     Q_UNUSED(argv);
 
     QList<QStringList> data;
-
     QFile file(":/sample.csv");
-    if (file.open(QIODevice::ReadOnly))
-    {
+    if (file.open(QIODevice::ReadOnly)) {
         QTextStream stream(&file);
-        forever     // loop forever macro
-        {
+
+        forever {
             QString line = stream.readLine();
-            if (line.isNull())      // test for null string 'QString()'
-            {
+            if (line.isNull()) {
                 break;
             }
-            if (line.isEmpty())     // test for empty string 'QString("")'
-            {
+            if (line.isEmpty()) {
                 continue;
             }
-
             QStringList row;
-            foreach (const QString& cell, line.split(","))
-            {
+            foreach (const QString &cell, line.split(",")) {
                 row.append(cell.trimmed());
             }
             data.append(row);
@@ -47,9 +43,9 @@ int main(int argc, char* argv[])
     {
         for (QString& cell : row)
         {
-            cout << cell << "\t";
+            Qt::cout << cell << "\t";
         }
-        cout << Qt::endl;
+        Qt::cout << Qt::endl;
     }
 
     return 0;

@@ -1,6 +1,12 @@
-[submodule "Qt6ModernCpp"]
-	path = Qt6ModernCpp
+[submodule "references/Cross-Platform-Development-with-Qt6-and-Modern-Cpp"]
+	path = references/Cross-Platform-Development-with-Qt6-and-Modern-Cpp
 	url = git@github.com:PacktPublishing/Cross-Platform-Development-with-Qt-6-and-Modern-Cpp.git
-[submodule "refernces/Application-Development-with-Qt-Creator-3rd-Edition"]
-	path = refernces/Application-Development-with-Qt-Creator-3rd-Edition
+[submodule "references/Application-Development-with-QtCreator"]
+	path = references/Application-Development-with-QtCreator
 	url = https://github.com/PacktPublishing/Application-Development-with-Qt-Creator-Third-Edition.git
+[submodule "references/Qt6-QML-Book"]
+	path = references/Qt6-QML-Book
+	url = https://github.com/qmlbook/qt6book.git
+[submodule "PatientCartUI"]
+	path = PatientCartUI
+	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/PatientCartUI/PatientCartUI
