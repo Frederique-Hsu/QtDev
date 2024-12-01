@@ -1,9 +1,0 @@
-[submodule "Qt6ModernCpp"]
-	path = Qt6ModernCpp
-	url = git@github.com:PacktPublishing/Cross-Platform-Development-with-Qt-6-and-Modern-Cpp.git
-[submodule "refernces/Application-Development-with-Qt-Creator-3rd-Edition"]
-	path = refernces/Application-Development-with-Qt-Creator-3rd-Edition
-	url = https://github.com/PacktPublishing/Application-Development-with-Qt-Creator-Third-Edition.git
-[submodule "refernces/qt6book"]
-	path = refernces/qt6book
-	url = https://github.com/qmlbook/qt6book.git
