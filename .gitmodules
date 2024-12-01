@@ -7,3 +7,6 @@
 [submodule "references/Qt6-QML-Book"]
 	path = references/Qt6-QML-Book
 	url = https://github.com/qmlbook/qt6book.git
+[submodule "PatientCartUI"]
+	path = PatientCartUI
+	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/PatientCartUI/PatientCartUI
