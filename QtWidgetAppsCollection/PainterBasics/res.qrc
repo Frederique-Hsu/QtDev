@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/marble_texture.jpg</file>
+        <file>images/qt_logo.jpg</file>
+        <file>images/wood_texture.jpg</file>
+    </qresource>
+</RCC>
