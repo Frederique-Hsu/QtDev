@@ -33,12 +33,4 @@ if (BUILD_QT_FROM_SRC)
 endif()
 
 
-add_executable(${PROJECT_NAME}
-    main.cpp)
-add_dependencies(${PROJECT_NAME} Qt6)
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    CXX_STANDARD    17
-    CXX_EXTENSIONS  NO
-    CXX_STANDARD_REQUIRED   YES)
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    )
+add_subdirectory(Qt6AppsDev)
