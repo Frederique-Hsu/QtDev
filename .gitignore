@@ -9,7 +9,8 @@
 *.pdf
 
 
-build-*/
+build*/
+.vscode/
 reference/
 Qt6QML_Showcases/
 BasicEditor/
@@ -18,12 +19,9 @@ Hello*/
 QT5.9Samp*/
 FancyWidgetApp/
 LayoutWidgets/
-**/build/
 references/QT*/
 QtWidgetAppsCollection/AD_Viewer_Emulator/
 
-QtQuickAppsCollection/
-QtWidgetAppsCollection/
 
 cm/.qtc_clangd/
 cm/aux
