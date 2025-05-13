@@ -22,6 +22,10 @@ LayoutWidgets/
 references/QT*/
 QtWidgetAppsCollection/AD_Viewer_Emulator/
 
+QtQuickAppsCollection/
+QtWidgetAppsCollection/
+
 cm/.qtc_clangd/
 cm/aux
 cm/binaries
+cm/*.stash
