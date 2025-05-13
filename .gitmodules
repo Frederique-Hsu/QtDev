@@ -10,3 +10,6 @@
 [submodule "PatientCartUI"]
 	path = PatientCartUI
 	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/PatientCartUI/PatientCartUI
+[submodule "references/cm"]
+	path = references/cm
+	url = https://github.com/PacktPublishing/Learn-Qt-5.git

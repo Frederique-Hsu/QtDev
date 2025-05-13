@@ -21,3 +21,7 @@ LayoutWidgets/
 **/build/
 references/QT*/
 QtWidgetAppsCollection/AD_Viewer_Emulator/
+
+cm/.qtc_clangd/
+cm/aux
+cm/binaries
