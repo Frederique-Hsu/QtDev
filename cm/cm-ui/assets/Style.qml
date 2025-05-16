@@ -22,6 +22,17 @@ Item {
     readonly property real widthNavigationBarCollapsed: widthNavigationButtonIcon
     readonly property real heightNavigationBarExpanded: widthNavigationButton
 
+    readonly property color colourCommandBarBackground: "#CECECE"
+    readonly property color colourCommandBarFont: "#131313"
+    readonly property color colourCommandBarFontDisabled: "#636363"
+
+    readonly property real heightCommandBar: heightCommandButton
+    readonly property int pixelSizeCommandBarIcon: 32
+    readonly property int pixelSizeCommandBarText: 12
+
+    readonly property real widthCommandButton: 80
+    readonly property real heightCommandButton: widthCommandButton
+
     FontLoader {
         id: fontAwesomeLoader
         source: "qrc:/assets/fontawesome.ttf"
