@@ -8,6 +8,7 @@
 #include "command_controller.hpp"
 
 #include <QDebug>
+#include <QList>
 
 
 namespace cm
@@ -19,6 +20,7 @@ class CommandController::Implementation
 {
 public:
     Implementation(CommandController* cmd_ctrler);
+    ~Implementation();
 
 public:
     CommandController* m_command_controller;
@@ -27,8 +29,7 @@ public:
 };
 
 
-CommandController::Implementation::Implementation(CommandController* cmd_ctrler) : m_command_controller{cmd_ctrler},
-                                                                                   m_create_client_view_context_commands{}
+CommandController::Implementation::Implementation(CommandController* cmd_ctrler) : m_command_controller{cmd_ctrler}
 {
     framework::Command* create_client_save_command = new framework::Command(m_command_controller,
                                                                             QChar(0xF0C7),
@@ -39,6 +40,17 @@ CommandController::Implementation::Implementation(CommandController* cmd_ctrler)
                      &CommandController::onCreateClientSaveExecuted);
 
     m_create_client_view_context_commands.append(create_client_save_command);
+}
+
+CommandController::Implementation::~Implementation()
+{
+    for (framework::Command* command : m_create_client_view_context_commands)
+    {
+        if (command != nullptr)
+        {
+            delete command;
+        }
+    }
 }
 
 CommandController::CommandController(QObject* parent) : QObject(parent)
