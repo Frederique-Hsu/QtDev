@@ -6,7 +6,6 @@
 
 
 #include "master_controller.hpp"
-#include "navigation_controller.hpp"
 
 namespace cm
 {

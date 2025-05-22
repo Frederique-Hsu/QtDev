@@ -52,7 +52,7 @@ CommandController::~CommandController()
 
 QQmlListProperty<framework::Command> CommandController::ui_createClientViewContextCommands()
 {
-    return QQmlListProperty<framework::Command>(this, m_implementor->m_create_client_view_context_commands);
+    return QQmlListProperty<cm::framework::Command>(this, &(m_implementor->m_create_client_view_context_commands));
 }
 
 void CommandController::onCreateClientSaveExecuted()

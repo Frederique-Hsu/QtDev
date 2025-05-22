@@ -14,11 +14,13 @@
 
 #include "cm-lib_global.hpp"
 
+#include "navigation_controller.hpp"
+
 namespace cm
 {
     namespace controllers
     {
-        class NavigationController;
+        // class NavigationController;
 
         class CM_LIB_EXPORT MasterController : public QObject
         {
