@@ -14,16 +14,32 @@ SOURCES += \
     source/controllers/command_controller.cpp \
     source/controllers/master_controller.cpp \
     source/controllers/navigation_controller.cpp \
+    source/data/data_decorator.cpp \
+    source/data/date_time_decorator.cpp \
+    source/data/entity.cpp \
+    source/data/enumerator_decorator.cpp \
+    source/data/int_decorator.cpp \
+    source/data/string_decorator.cpp \
     source/framework/command.cpp \
     source/models/client.cpp
+
+
 
 HEADERS += \
     source/cm-lib_global.hpp \
     source/controllers/command_controller.hpp \
     source/controllers/master_controller.hpp \
     source/controllers/navigation_controller.hpp \
+    source/data/data_decorator.hpp \
+    source/data/date_time_decorator.hpp \
+    source/data/entity.hpp \
+    source/data/enumerator_decorator.hpp \
+    source/data/int_decorator.hpp \
+    source/data/string_decorator.hpp \
     source/framework/command.hpp \
     source/models/client.hpp
+
+
 
 # Default rules for deployment.
 unix {
@@ -35,9 +51,9 @@ include(../qmake-target-platform.pri)
 include(../qmake-destination-path.pri)
 
 DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
-OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
-MOC_DIR = $$PWD/build/$$DESTINATION_PATH/.moc
-RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
-UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
+OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/obj
+MOC_DIR = $$PWD/build/$$DESTINATION_PATH/moc
+RCC_DIR = $$PWD/build/$$DESTINATION_PATH/qrc
+UI_DIR = $$PWD/build/$$DESTINATION_PATH/ui
 
 message(cm-lib output dir: $${DESTDIR})
