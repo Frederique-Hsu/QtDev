@@ -4,6 +4,6 @@
 *.exe
 *.txt
 
-build/*
-qt6_sources/*
-qt_creator_sources/*
+build/
+qt6_sources/
+qt_creator_sources/
