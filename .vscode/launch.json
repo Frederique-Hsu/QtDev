@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "qtcreator Launch",
+            "name": "QtCreator Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/qt_creator_build/bin/qtcreator",
+            "program": "${workspaceFolder}/build/qt_creator_state/src/Qt_Creator-build/bin/qtcreator",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
