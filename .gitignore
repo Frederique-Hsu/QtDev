@@ -29,3 +29,7 @@ cm/.qtc_clangd/
 cm/aux
 cm/binaries
 cm/*.stash
+cm/*.DS_Store
+
+qt6_sources/
+qt_creator_sources/
