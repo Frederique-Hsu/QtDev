@@ -33,3 +33,5 @@ cm/*.DS_Store
 
 qt6_sources/
 qt_creator_sources/
+
+*/**/build
