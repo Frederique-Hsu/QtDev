@@ -31,7 +31,8 @@ Window {
         }
         function onGoEditClientView(EditClientView)
         {
-            contentFrame.replace(Qt.resolvedUrl("qrc:/views/EditClientView.qml"), {selectedClient: client});
+            contentFrame.replace(Qt.resolvedUrl("qrc:/views/EditClientView.qml"),
+                                 {selectedClient: client});
         }
         function onGoFindClientView()
         {

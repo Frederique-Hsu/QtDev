@@ -1,3 +1,10 @@
+/*!
+ *  \file       NavigationBar.qml
+ *  \brief
+ *
+ */
+
+
 import QtQuick 2.13
 
 import assets 1.0
@@ -10,7 +17,9 @@ Item {
         bottom: parent.bottom
         left: parent.left
     }
-    width: isCollapsed ? Style.widthNavigationBarCollapsed : Style.heightNavigationBarExpanded
+    width: isCollapsed ? Style.widthNavigationBarCollapsed :
+                         // Style.heightNavigationBarExpanded
+                         Style.widthNavigationBarExpanded
 
     Rectangle {
         anchors.fill: parent
@@ -20,13 +29,13 @@ Item {
             width: parent.width
 
             NavigationButton {
-                iconCharacter: "\uf0c9"
+                iconCharacter: "\uf0c9"     // bars icon
                 description: ""
                 hoverColour: "#993333"
                 onNavigationButtonClicked: isCollapsed = !isCollapsed
             }
             NavigationButton {
-                iconCharacter: "\uf015"
+                iconCharacter: "\uf015"     // home icon
                 description: "Dashboard"
                 hoverColour: "#DC8A00"
                 onNavigationButtonClicked: {
@@ -35,7 +44,7 @@ Item {
                 }
             }
             NavigationButton {
-                iconCharacter: "\uf234"
+                iconCharacter: "\uf234"     // user-plus icon
                 description: "New Client"
                 hoverColour: "#DCCD00"
                 onNavigationButtonClicked: {
@@ -44,7 +53,7 @@ Item {
                 }
             }
             NavigationButton {
-                iconCharacter: "\uf002"
+                iconCharacter: "\uf002"     // search icon
                 description: "Find Client"
                 hoverColour: "#8AEF63"
                 onNavigationButtonClicked: {

@@ -16,11 +16,14 @@ Item {
     readonly property real heightNavigationButtonIcon: widthNavigationButtonIcon
     readonly property real widthNavigationButtonDescription: 160
     readonly property real heightNavigationButtonDescription: heightNavigationButtonIcon
-    readonly property real widthNavigationButton: widthNavigationButtonIcon + widthNavigationButtonDescription
-    readonly property real heightNavigationButton: Math.max(heightNavigationButtonIcon, heightNavigationButtonDescription)
+    readonly property real widthNavigationButton: widthNavigationButtonIcon +
+                                                  widthNavigationButtonDescription
+    readonly property real heightNavigationButton: Math.max(heightNavigationButtonIcon,
+                                                            heightNavigationButtonDescription)
 
     readonly property real widthNavigationBarCollapsed: widthNavigationButtonIcon
-    readonly property real heightNavigationBarExpanded: widthNavigationButton
+    // readonly property real heightNavigationBarExpanded: widthNavigationButton
+    readonly property real widthNavigationBarExpanded: widthNavigationButton
 
     readonly property color colourCommandBarBackground: "#CECECE"
     readonly property color colourCommandBarFont: "#131313"
