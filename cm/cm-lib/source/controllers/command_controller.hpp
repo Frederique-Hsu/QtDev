@@ -38,7 +38,7 @@ namespace cm
             QScopedPointer<Implementation> m_implementor;
 
         public:
-            QQmlListProperty<framework::Command> ui_createClientViewContextCommands();
+            QQmlListProperty<cm::framework::Command> ui_createClientViewContextCommands();
         };
     }
 }

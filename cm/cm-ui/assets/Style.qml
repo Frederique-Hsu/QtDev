@@ -26,7 +26,7 @@ Item {
     readonly property real widthNavigationBarExpanded: widthNavigationButton
 
     readonly property color colourCommandBarBackground: "#CECECE"
-    readonly property color colourCommandBarFont: "#131313"
+    readonly property color colourCommandBarFontEnabled: "#131313"
     readonly property color colourCommandBarFontDisabled: "#636363"
 
     readonly property real heightCommandBar: heightCommandButton

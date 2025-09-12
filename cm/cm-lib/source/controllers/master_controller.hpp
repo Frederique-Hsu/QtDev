@@ -25,8 +25,10 @@ namespace cm
         {
             Q_OBJECT
             Q_PROPERTY(QString ui_welcomeMessage READ welcomeMessage CONSTANT)
-            Q_PROPERTY(cm::controllers::NavigationController* ui_navigationController READ navigationController CONSTANT)
-            Q_PROPERTY(cm::controllers::CommandController* ui_commandController READ commandController CONSTANT)
+            Q_PROPERTY(cm::controllers::NavigationController* ui_navigationController
+                       READ navigationController CONSTANT)
+            Q_PROPERTY(cm::controllers::CommandController* ui_commandController
+                       READ commandController CONSTANT)
         public:
             explicit MasterController(QObject *parent = nullptr);
             ~MasterController();
