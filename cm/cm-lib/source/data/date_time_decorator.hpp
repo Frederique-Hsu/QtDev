@@ -23,7 +23,7 @@ class CM_LIB_EXPORT DateTimeDecorator : public DataDecorator
 
     Q_PROPERTY(QString ui_iso8601String READ toIso8601String NOTIFY valueChanged)
     Q_PROPERTY(QString ui_prettyDateString READ toPrettyDateString NOTIFY valueChanged)
-    Q_PROPERTY(QString ui_prettyTineString READ toPrettyTimeString NOTIFY valueChanged)
+    Q_PROPERTY(QString ui_prettyTimeString READ toPrettyTimeString NOTIFY valueChanged)
     Q_PROPERTY(QString ui_prettyString READ toPrettyString NOTIFY valueChanged)
     Q_PROPERTY(QDateTime ui_value READ value WRITE setValue NOTIFY valueChanged)
 public:

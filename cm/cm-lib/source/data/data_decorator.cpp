@@ -28,7 +28,9 @@ cm::data::DataDecorator::Implementation::Implementation(Entity* parent,
 }
 
 
-cm::data::DataDecorator::DataDecorator(Entity* parent, const QString& key, const QString& label) : QObject((QObject *)parent)
+cm::data::DataDecorator::DataDecorator(Entity* parent,
+                                       const QString& key,
+                                       const QString& label) : QObject((QObject *)parent)
 {
     m_implementor.reset(new Implementation(parent, key, label));
 }
