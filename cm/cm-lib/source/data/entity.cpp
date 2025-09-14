@@ -31,7 +31,8 @@ public:
     std::map<QString, EntityCollectionBase*> m_child_collections;
 };
 
-Entity::Implementation::Implementation(Entity* parent_entity, const QString& key) : m_parent{parent_entity}, m_key{key}
+Entity::Implementation::Implementation(Entity* parent_entity, const QString& key)
+    : m_parent{parent_entity}, m_key{key}
 {
 }
 
@@ -106,7 +107,8 @@ QJsonObject Entity::toJson() const
     // Add child entities
     for (auto& [key, entity_ptr] : m_implementor->m_child_entities)
     {
-        // recursively call Entity::toJson() on each of the children, and this cascades down the hierarchy tree
+        // recursively call Entity::toJson() on each of the children,
+        // and this cascades down the hierarchy tree
         ret_json_obj.insert(key, entity_ptr->toJson());
     }
     // Add child collections

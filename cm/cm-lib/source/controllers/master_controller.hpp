@@ -16,6 +16,7 @@
 
 #include "navigation_controller.hpp"
 #include "command_controller.hpp"
+#include "models/client.hpp"
 
 namespace cm
 {
@@ -24,9 +25,14 @@ namespace cm
         class CM_LIB_EXPORT MasterController : public QObject
         {
             Q_OBJECT
+
             Q_PROPERTY(QString ui_welcomeMessage READ welcomeMessage CONSTANT)
-            Q_PROPERTY(cm::controllers::NavigationController* ui_navigationController READ navigationController CONSTANT)
-            Q_PROPERTY(cm::controllers::CommandController* ui_commandController READ commandController CONSTANT)
+            Q_PROPERTY(cm::controllers::NavigationController* ui_navigationController
+                       READ navigationController CONSTANT)
+            Q_PROPERTY(cm::controllers::CommandController* ui_commandController
+                       READ commandController CONSTANT)
+            Q_PROPERTY(cm::models::Client *ui_client READ client CONSTANT)
+
         public:
             explicit MasterController(QObject *parent = nullptr);
             ~MasterController();
@@ -35,6 +41,7 @@ namespace cm
             NavigationController* navigationController();
             const QString& welcomeMessage() const;
             CommandController* commandController();
+            cm::models::Client* client();
 
         private:
             class Implementation;

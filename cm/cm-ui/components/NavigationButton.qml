@@ -1,3 +1,10 @@
+/*!
+ *  \file       NavigationButton.qml
+ *  \brief
+ *
+ */
+
+
 import QtQuick 2.13
 
 import assets 1.0
@@ -60,7 +67,6 @@ Item {
                     color: hoverColour
                 }
             }
-
         ]
     }
 }

@@ -15,11 +15,14 @@ public:
                    const QString& description,
                    std::function<bool()> can_execute);
     ~Implementation() = default;
+
 public:
     QString m_icon_character;
     QString m_description;
     std::function<bool()> m_can_execute;
 };
+
+/*================================================================================================*/
 
 cm::framework::Command::Implementation::Implementation(const QString& icon_character,
                                                        const QString& description,
@@ -28,6 +31,7 @@ cm::framework::Command::Implementation::Implementation(const QString& icon_chara
 {
 }
 
+/*================================================================================================*/
 
 cm::framework::Command::Command(QObject* parent,
                                 const QString& icon_character,

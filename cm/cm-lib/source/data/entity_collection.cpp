@@ -13,7 +13,8 @@ namespace cm
 namespace data
 {
 
-EntityCollectionBase::EntityCollectionBase(QObject* parent, const QString& key) : EntityCollectionObject(parent), m_key(key)
+EntityCollectionBase::EntityCollectionBase(QObject* parent, const QString& key)
+    : EntityCollectionObject(parent), m_key(key)
 {
 }
 

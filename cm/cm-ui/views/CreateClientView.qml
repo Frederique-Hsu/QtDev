@@ -7,10 +7,13 @@
 
 import QtQuick 2.13
 
+import CM 1.0
 import assets 1.0
 import components 1.0
 
 Item {
+    property Client new_client: master_controller.ui_client
+
     Rectangle {
         anchors.fill: parent
         color: Style.colourBackground

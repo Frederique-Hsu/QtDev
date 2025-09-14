@@ -24,7 +24,7 @@ Item {
                 family: Style.fontAwesome
                 pixelSize: Style.pixelSizeCommandBarIcon
             }
-            color: command.ui_canExecute ? Style.colourCommandBarFont :
+            color: command.ui_canExecute ? Style.colourCommandBarFontEnabled :
                                            Style.colourCommandBarFontDisabled
             text: command.ui_iconCharacter
             horizontalAlignment: Text.AlignHCenter
@@ -38,8 +38,8 @@ Item {
                 left: parent.left
                 right: parent.right
             }
-            font.pixelSize: Style.pixelSizeNavigationBarText
-            color: command.ui_canExecute ? Style.colourCommandBarFont :
+            font.pixelSize: Style.pixelSizeCommandBarText
+            color: command.ui_canExecute ? Style.colourCommandBarFontEnabled :
                                            Style.colourCommandBarFontDisabled
             text: command.ui_description
             horizontalAlignment: Text.AlignHCenter
@@ -68,7 +68,6 @@ Item {
                     color: Qt.darker(Style.colourCommandBarBackground)
                 }
             }
-
         ]
     }
 }

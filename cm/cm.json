@@ -1,0 +1,23 @@
+{
+    "reference": "CLIENT0001"",
+    "name": "Dale Cooper",
+    "supplyAddress": {
+        "number": 7,
+        "name": "White Lodge",
+        "street": "Lost Highway",
+        "city": "Twin Peaks",
+        "postcode": "WS119"
+    },
+    "billingAddress": null,
+    "contracts": [
+        {
+            "type": 1,
+            "address": "+12345678",
+        },
+        {
+            "type": 2,
+            "address": "dale.cooper@fbi.com"
+        }
+    ],
+    "appointments": []
+}
