@@ -17,11 +17,15 @@ SOURCES += \
     source/data/data_decorator.cpp \
     source/data/date_time_decorator.cpp \
     source/data/entity.cpp \
+    source/data/entity_collection.cpp \
     source/data/enumerator_decorator.cpp \
     source/data/int_decorator.cpp \
     source/data/string_decorator.cpp \
     source/framework/command.cpp \
-    source/models/client.cpp
+    source/models/address.cpp \
+    source/models/appointment.cpp \
+    source/models/client.cpp \
+    source/models/contact.cpp
 
 
 
@@ -33,11 +37,15 @@ HEADERS += \
     source/data/data_decorator.hpp \
     source/data/date_time_decorator.hpp \
     source/data/entity.hpp \
+    source/data/entity_collection.hpp \
     source/data/enumerator_decorator.hpp \
     source/data/int_decorator.hpp \
     source/data/string_decorator.hpp \
     source/framework/command.hpp \
-    source/models/client.hpp
+    source/models/address.hpp \
+    source/models/appointment.hpp \
+    source/models/client.hpp \
+    source/models/contact.hpp
 
 
 
