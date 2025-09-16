@@ -7,31 +7,20 @@
 *.txt
 *.tgz
 *.pdf
+*.DS_Store
+*.stash
 
 
-build-*/
-reference/
-Qt6QML_Showcases/
-BasicEditor/
-CustomizeUserWidget/
-Hello*/
-QT5.9Samp*/
-FancyWidgetApp/
-LayoutWidgets/
-**/build/
-references/QT*/
+build*/
+*/**/build
+.vscode/
+references/
 QtWidgetAppsCollection/AD_Viewer_Emulator/
 
-QtQuickAppsCollection/
-QtWidgetAppsCollection/
 
 cm/.qtc_clangd/
 cm/aux
 cm/binaries
-cm/*.stash
-cm/*.DS_Store
 
 qt6_sources/
 qt_creator_sources/
-
-*/**/build

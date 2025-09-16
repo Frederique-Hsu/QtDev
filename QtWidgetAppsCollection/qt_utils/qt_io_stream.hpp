@@ -9,6 +9,7 @@
 
 
 #include <QTextStream>
+#include <QIODevice>
 
 
 namespace Qt
