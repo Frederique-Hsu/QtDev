@@ -7,3 +7,9 @@
 build/
 qt6_sources/
 qt_creator_sources/
+
+cm/
+QtQuickAppsCollection/
+QtWidgetAppsCollection/
+references/
+.vscode/
