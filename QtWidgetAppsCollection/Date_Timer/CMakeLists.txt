@@ -12,13 +12,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+file(GLOB_RECURSE sources "*.c*")
+file(GLOB_RECURSE headers "*.h*")
+list(FILTER sources EXCLUDE REGEX "./build/*.c*")
+list(FILTER headers EXCLUDE REGEX "./build/*.h*")
+
+message(STATUS "${PROJECT_NAME} project's code files list: ")
+foreach (source ${sources})
+  message(STATUS "\t\t ${source}")
+endforeach()
+foreach (header ${headers})
+  message(STATUS "\t\t ${header}")
+endforeach()
+
 set(PROJECT_SOURCES
-        main.cpp
-        date_timer_dialog.cpp
-        date_timer_dialog.hpp
-        date_timer_dialog_ui.cpp
-        date_timer_dialog_ui.hpp
-)
+    ${sources}
+    ${headers})
+
+# message(STATUS "PROJECT_SOURCES = ${PROJECT_SOURCES}")
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Date_Timer
