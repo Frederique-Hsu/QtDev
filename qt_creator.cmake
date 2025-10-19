@@ -8,7 +8,8 @@ set(QT_CREATOR_INSTALL_DIR      ${CMAKE_BINARY_DIR}/qt_creator_install)
 
 set(GIT_REPO_NAME       "Qt Creator")
 set(GIT_REPO_URL        http://code.qt.io/qt-creator/qt-creator.git)
-set(GIT_TAG_OR_BRANCH   v16.0.0)
+set(GIT_BRANCH          17.0)
+set(GIT_TAG             v17.0.2)
 set(GIT_CLONE_DEPTH     10)
 
 
@@ -17,7 +18,7 @@ if (NOT EXISTS ${QT_CREATOR_SOURCE_DIR}/.git)
     message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
 
     execute_process(
-        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_TAG_OR_BRANCH} ${GIT_REPO_URL} ${QT_CREATOR_SOURCE_DIR}
+        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_BRANCH} ${GIT_REPO_URL} ${QT_CREATOR_SOURCE_DIR}
         WORKING_DIRECTORY       ${CMAKE_CURRENT_BINARY_DIR}
         RESULT_VARIABLE         git_clone_result
     )
@@ -26,24 +27,53 @@ if (NOT EXISTS ${QT_CREATOR_SOURCE_DIR}/.git)
     endif()
 
 else()
-    message(STATUS "Checking current working branch/tag ${GIT_TAG_OR_BRANCH}...")
+    message(STATUS "\nIn ${GIT_REPO_NAME} repo, SELECT_BRANCH_OR_TAG = ${SELECT_BRANCH_OR_TAG}")
 
-    execute_process(
-        COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} describe --tags --exact-match HEAD
-        OUTPUT_VARIABLE     current_version_tag
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
-    if (NOT ${current_version_tag} STREQUAL ${GIT_TAG_OR_BRANCH})
-        message(STATUS "Switching ${GIT_REPO_NAME} to tag/branch ${GIT_TAG_OR_BRANCH}")
+    if (${SELECT_BRANCH_OR_TAG} STREQUAL "Branch")
 
+        message(STATUS "Checking current working branch ${GIT_BRANCH}...")
         execute_process(
-            COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} fetch --depth=${GIT_CLONE_DEPTH} origin ${GIT_TAG_OR_BRANCH}:${GIT_TAG_OR_BRANCH}
-            COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} checkout ${GIT_TAG_OR_BRANCH}
-            RESULT_VARIABLE     result
+            COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} rev-parse --abbrev-ref HEAD
+            OUTPUT_VARIABLE     current_branch
+            OUTPUT_STRIP_TRAILING_WHITESPACE
         )
-        if (NOT result EQUAL 0)
-            message(STATUS "Failed to switch to your expected tag/branch ${GIT_TAG_OR_BRANCH}")
+        message(STATUS "current_branch = ${current_branch}")
+        if (NOT current_branch STREQUAL ${GIT_BRANCH})
+            message(STATUS "Checkout ${GIT_REPO_NAME} repo to branch ${GIT_BRANCH}")
+            execute_process(
+                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} fetch --depth=${GIT_CLONE_DEPTH} origin ${GIT_BRANCH}:${GIT_BRANCH}
+                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} checkout ${GIT_BRANCH}
+                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} submodule update --init --recursive --depth ${GIT_CLONE_DEPTH}
+                RESULT_VARIABLE     result
+            )
+            if (NOT result EQUAL 0)
+                message(FATAL_ERROR "Failed to checkout to expected branch ${GIT_BRANCH}")
+            endif()
         endif()
+
+    elseif (${SELECT_BRANCH_OR_TAG} STREQUAL "Tag")
+
+        message(STATUS "Checking current working tag ${GIT_TAG}...")
+        execute_process(
+            COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} describe --tags --exact-match HEAD
+            OUTPUT_VARIABLE     current_tag
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        message(STATUS "current_tag = ${current_tag}")
+        if (NOT current_tag STREQUAL ${GIT_TAG})
+            message(STATUS "Switching ${GIT_REPO_NAME} to tag ${GIT_TAG}")
+
+            execute_process(
+                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} fetch --depth=${GIT_CLONE_DEPTH} origin ${GIT_TAG}:${GIT_TAG}
+                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} checkout ${GIT_TAG}
+                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} submodule update --init --recursive --depth ${GIT_CLONE_DEPTH}
+                RESULT_VARIABLE     result
+            )
+            if (NOT result EQUAL 0)
+                message(FATAL_ERROR "Failed to switch to your expected tag ${GIT_TAG}")
+            endif()
+        endif()
+
     endif()
 endif()
 
