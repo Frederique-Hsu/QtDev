@@ -30,7 +30,7 @@ QML_DESIGNER_IMPORT_PATH =
 LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
 
 DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
-OBJECTS_DIR = $$PWD/../build/$$DESTINATION_PATH/.obj
-MOC_DIR = $$PWD/../build/$$DESTINATION_PATH/.moc
-RCC_DIR = $$PWD/../build/$$DESTINATION_PATH/.qrc
-UI_DIR = $$PWD/../build/$$DESTINATION_PATH/.ui
+OBJECTS_DIR = $$PWD/../build/$$DESTINATION_PATH/obj
+MOC_DIR = $$PWD/../build/$$DESTINATION_PATH/moc
+RCC_DIR = $$PWD/../build/$$DESTINATION_PATH/qrc
+UI_DIR = $$PWD/../build/$$DESTINATION_PATH/ui
