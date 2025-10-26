@@ -4,7 +4,7 @@
 *.o
 *.obj
 *.exe
-*.txt
+*.user
 *.tgz
 *.pdf
 *.DS_Store
