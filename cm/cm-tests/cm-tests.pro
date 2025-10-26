@@ -6,10 +6,13 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-INCLUDEPATH += source
+INCLUDEPATH += source \
+    ../cm-lib/source
 
-SOURCES +=  tst_clienttests.cpp \
+SOURCES +=  \
     main.cpp \
+    source/controllers/master-controller-tests.cpp \
+    source/data/int_decorator_tests.cpp \
     test_suite.cpp
 
 include(../qmake-target-platform.pri)
@@ -24,4 +27,6 @@ UI_DIR = $$PWD/build/$$DESTINATION_PATH/ui
 LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
 
 HEADERS += \
+    source/controllers/master-controller-tests.hpp \
+    source/data/int_decorator_tests.hpp \
     test_suite.hpp
