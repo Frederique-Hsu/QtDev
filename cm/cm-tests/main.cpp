@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 
     qDebug() << "Starting test suite...";
     qDebug() << "Accessing tests from " << cm::TestSuite::testList();
-    qDebug() << cm::TestSuite::testList().size() << " test cases detected." << Qt::endl;
+    qDebug() << cm::TestSuite::testList().size() << " test suites detected." << Qt::endl;
 
     int failed_tests_count = 0;
     for (cm::TestSuite* test_suite_ptr : cm::TestSuite::testList())

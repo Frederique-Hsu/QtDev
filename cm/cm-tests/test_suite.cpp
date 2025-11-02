@@ -13,9 +13,9 @@ namespace cm
 {
     TestSuite::TestSuite(const QString &test_name) : QObject(), m_test_name(test_name)
     {
-        qDebug() << "Creating test " << test_name;
+        qDebug() << "Creating test suite " << test_name;
         testList().push_back(this);
-        qDebug() << testList().size() << " test cases recorded" << Qt::endl;
+        qDebug() << testList().size() << " test suites recorded" << Qt::endl;
     }
 
     TestSuite::~TestSuite()
