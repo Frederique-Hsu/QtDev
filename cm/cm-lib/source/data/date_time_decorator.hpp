@@ -27,7 +27,7 @@ class CM_LIB_EXPORT DateTimeDecorator : public DataDecorator
     Q_PROPERTY(QString ui_prettyString READ toPrettyString NOTIFY valueChanged)
     Q_PROPERTY(QDateTime ui_value READ value WRITE setValue NOTIFY valueChanged)
 public:
-    DateTimeDecorator(Entity* parent_entity,
+    DateTimeDecorator(Entity* parent_entity = nullptr,
                       const QString& key = "SomeItemKey",
                       const QString& label = "",
                       const QDateTime& value = QDateTime());
