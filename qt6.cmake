@@ -7,9 +7,9 @@ set(QT6_INSTALL_DIR     ${CMAKE_BINARY_DIR}/qt6_install)
 
 
 set(GIT_REPO_NAME       Qt6)
-set(GIT_REPO_URL        http://code.qt.io/qt/qt5.git)
+set(GIT_REPO_URL        https://github.com/qt/qt5.git)
 set(GIT_BRANCH          6.10.0)
-set(GIT_TAG             v6.10.0)
+set(GIT_TAG             v6.10.1)
 set(GIT_CLONE_DEPTH     10)
 
 message(STATUS "CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
@@ -25,7 +25,7 @@ if (NOT EXISTS ${QT6_SOURCE_DIR}/.git)
     message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
 
     execute_process(
-        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_BRANCH} ${GIT_REPO_URL} ${QT6_SOURCE_DIR}
+        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_TAG} ${GIT_REPO_URL} ${QT6_SOURCE_DIR}
         WORKING_DIRECTORY   ${CMAKE_CURRENT_BINARY_DIR}
         RESULT_VARIABLE     git_clone_result
     )

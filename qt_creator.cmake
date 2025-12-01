@@ -7,9 +7,9 @@ set(QT_CREATOR_INSTALL_DIR      ${CMAKE_BINARY_DIR}/qt_creator_install)
 
 
 set(GIT_REPO_NAME       "Qt Creator")
-set(GIT_REPO_URL        http://code.qt.io/qt-creator/qt-creator.git)
+set(GIT_REPO_URL        https://github.com/qt-creator/qt-creator.git)
 set(GIT_BRANCH          17.0)
-set(GIT_TAG             v17.0.2)
+set(GIT_TAG             v18.0.0)
 set(GIT_CLONE_DEPTH     10)
 
 
@@ -26,7 +26,7 @@ if (NOT EXISTS ${QT_CREATOR_SOURCE_DIR}/.git)
     message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
 
     execute_process(
-        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_BRANCH} ${GIT_REPO_URL} ${QT_CREATOR_SOURCE_DIR}
+        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_TAG} ${GIT_REPO_URL} ${QT_CREATOR_SOURCE_DIR}
         WORKING_DIRECTORY       ${CMAKE_CURRENT_BINARY_DIR}
         RESULT_VARIABLE         git_clone_result
     )
