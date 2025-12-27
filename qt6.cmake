@@ -12,8 +12,15 @@ set(GIT_BRANCH          6.10.1)
 set(GIT_TAG             v6.10.1)
 set(GIT_CLONE_DEPTH     10)
 
+message(STATUS "CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
 
-find_program(GIT_EXECUTABLE git REQUIRED)
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    find_program(GIT_EXECUTABLE "C:\\Program Files\\Git\\mingw64\\bin\\git.exe" REQUIRED)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    find_program(GIT_EXECUTABLE git REQUIRED)
+endif()
+message(STATUS "GIT_EXECUTABLE = ${GIT_EXECUTABLE}")
+
 if (NOT EXISTS ${QT6_SOURCE_DIR}/.git)
     message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
 

@@ -8,12 +8,20 @@ set(QT_CREATOR_INSTALL_DIR      ${CMAKE_BINARY_DIR}/qt_creator_install)
 
 set(GIT_REPO_NAME       "Qt Creator")
 set(GIT_REPO_URL        https://github.com/qt-creator/qt-creator.git)
-set(GIT_BRANCH          18.0)
 set(GIT_TAG             v18.0.1)
+set(GIT_BRANCH          17.0)
 set(GIT_CLONE_DEPTH     10)
 
 
-find_program(GIT_EXECUTABLE git REQUIRED)
+message(STATUS "CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    find_program(GIT_EXECUTABLE "C:\\Program Files\\Git\\mingw64\\bin\\git.exe" REQUIRED)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    find_program(GIT_EXECUTABLE git REQUIRED)
+endif()
+message(STATUS "GIT_EXECUTABLE = ${GIT_EXECUTABLE}")
+
 if (NOT EXISTS ${QT_CREATOR_SOURCE_DIR}/.git)
     message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
 

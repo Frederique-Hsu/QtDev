@@ -2,7 +2,7 @@
 
 *.o
 *.exe
-*.txt
+# *.txt
 
 build/
 qt6_sources/
@@ -13,3 +13,4 @@ QtQuickAppsCollection/
 QtWidgetAppsCollection/
 references/
 .vscode/
+.vs/
