@@ -101,7 +101,12 @@ ExternalProject_Add(Qt_Creator
         -DBUILD_SHARED_LIBS=ON
         -DCMAKE_PREFIX_PATH=${QT6_INSTALL_DIR}
     BUILD_ALWAYS            TRUE
-    # STEP_TARGETS            install
+    STEP_TARGETS            install
+)
+
+add_custom_command(TARGET Qt_Creator POST_BUILD
+    COMMAND ${CMAKE_COMMAND} --install ${QT_CREATOR_STATE_DIR}/src/Qt_Creator-build --prefix ${QT_CREATOR_INSTALL_DIR} --component Dependencies
+    COMMENT "Installing Qt Creator with dependencies"
 )
 
 add_dependencies(Qt_Creator Qt6)
