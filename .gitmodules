@@ -13,3 +13,4 @@
 [submodule "references/NotepadNext"]
 	path = references/NotepadNext
 	url = https://github.com/dail8859/NotepadNext.git
+	branch = master
