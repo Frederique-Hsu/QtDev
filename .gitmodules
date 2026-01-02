@@ -14,3 +14,6 @@
 	path = references/NotepadNext
 	url = https://github.com/dail8859/NotepadNext.git
 	branch = master
+[submodule "PatientCartUI"]
+	path = PatientCartUI
+	url = project-repositories@vs-ssh.visualstudio.com:v3/project-repositories/PatientCartUI/PatientCartUI

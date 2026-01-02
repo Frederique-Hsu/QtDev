@@ -32,7 +32,7 @@ namespace cm
             : m_master_controller{master_controller},
               m_navigation_controller{nullptr},
               m_client{nullptr},
-              m_welcomeMessage("This is MasterController to Major Tom")
+              m_welcomeMessage("Welcome to the Client Management system!")
         {
             m_navigation_controller = new NavigationController(m_master_controller);
             m_command_controller = new CommandController(m_master_controller);
