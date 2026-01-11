@@ -100,6 +100,9 @@ ExternalProject_Add(Qt_Creator
         -DCMAKE_INSTALL_PREFIX=${QT_CREATOR_INSTALL_DIR}
         -DBUILD_SHARED_LIBS=ON
         -DCMAKE_PREFIX_PATH=${QT6_INSTALL_DIR}
+        -DWITH_QMLDESIGNER=ON
+        -DWITH_SANITIZE:BOOL=ON
+        -DSANITIZE_FLAGS:STRING=address
     BUILD_ALWAYS            TRUE
     STEP_TARGETS            install
 )
