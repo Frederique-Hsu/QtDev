@@ -18,6 +18,7 @@ build*/
 references/
 QtWidgetAppsCollection/AD_Viewer_Emulator/
 
+*/**/.qtcreator/
 
 cm/.qtc_clangd/
 cm/aux
