@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.24)
 
 set(CURRENT_PROJECT_NAME    QtVulkanCubes)
 project(${CURRENT_PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
