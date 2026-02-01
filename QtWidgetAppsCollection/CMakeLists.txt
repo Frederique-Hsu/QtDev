@@ -11,3 +11,5 @@ add_subdirectory(SimpleWidget)
 add_subdirectory(MultiThreading_DiceGame)
 add_subdirectory(PainterBasics)
 add_subdirectory(QtGuiCalculator)
+
+add_subdirectory(network_programming)
