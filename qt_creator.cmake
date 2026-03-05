@@ -7,87 +7,14 @@ set(QT_CREATOR_INSTALL_DIR      ${CMAKE_BINARY_DIR}/qt_creator_install)
 
 
 set(GIT_REPO_NAME       "Qt Creator")
-set(GIT_REPO_URL        https://github.com/qt-creator/qt-creator.git)
-set(GIT_TAG             v18.0.1)
-set(GIT_BRANCH          17.0)
-set(GIT_CLONE_DEPTH     10)
+# set(GIT_REPO_URL        https://github.com/qt-creator/qt-creator.git)
+SET(GIT_REPO_URL        https://code.qt.io/qt-creator/qt-creator.git)
+set(GIT_TAG             v18.0.2)
+set(GIT_BRANCH          18.0)
 
 
-message(STATUS "CMAKE_SYSTEM_NAME = ${CMAKE_SYSTEM_NAME}")
-
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    find_program(GIT_EXECUTABLE "C:\\Program Files\\Git\\mingw64\\bin\\git.exe" REQUIRED)
-elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    find_program(GIT_EXECUTABLE git REQUIRED)
-endif()
-message(STATUS "GIT_EXECUTABLE = ${GIT_EXECUTABLE}")
-
-if (NOT EXISTS ${QT_CREATOR_SOURCE_DIR}/.git)
-    message(STATUS "It is now git-cloning shallowly the ${GIT_REPO_NAME} repository...")
-
-    execute_process(
-        COMMAND     ${GIT_EXECUTABLE} clone --recurse-submodules --depth=${GIT_CLONE_DEPTH} --branch=${GIT_TAG} ${GIT_REPO_URL} ${QT_CREATOR_SOURCE_DIR}
-        WORKING_DIRECTORY       ${CMAKE_CURRENT_BINARY_DIR}
-        RESULT_VARIABLE         git_clone_result
-    )
-    if (NOT git_clone_result EQUAL 0)
-        message(FATAL_ERROR "Failed to clone the ${GIT_REPO_NAME} repository!")
-    endif()
-
-else()
-    message(STATUS "\nIn ${GIT_REPO_NAME} repo, SELECT_BRANCH_OR_TAG = ${SELECT_BRANCH_OR_TAG}")
-
-    if (${SELECT_BRANCH_OR_TAG} STREQUAL "Branch")
-
-        message(STATUS "Checking current working branch ${GIT_BRANCH}...")
-        execute_process(
-            COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} rev-parse --abbrev-ref HEAD
-            OUTPUT_VARIABLE     current_branch
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-        message(STATUS "current_branch = ${current_branch}")
-        if (NOT current_branch STREQUAL ${GIT_BRANCH})
-            message(STATUS "Checkout ${GIT_REPO_NAME} repo to branch ${GIT_BRANCH}")
-            execute_process(
-                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} fetch --depth=${GIT_CLONE_DEPTH} origin ${GIT_BRANCH}:${GIT_BRANCH}
-                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} checkout ${GIT_BRANCH}
-                COMMAND ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} submodule update --init --recursive --depth ${GIT_CLONE_DEPTH}
-                RESULT_VARIABLE     result
-            )
-            if (NOT result EQUAL 0)
-                message(FATAL_ERROR "Failed to checkout to expected branch ${GIT_BRANCH}")
-            endif()
-        endif()
-
-    elseif (${SELECT_BRANCH_OR_TAG} STREQUAL "Tag")
-
-        message(STATUS "Checking current working tag ${GIT_TAG}...")
-        execute_process(
-            COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} describe --tags --exact-match HEAD
-            OUTPUT_VARIABLE     current_tag
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-        message(STATUS "current_tag = ${current_tag}")
-        if (NOT current_tag STREQUAL ${GIT_TAG})
-            message(STATUS "Switching ${GIT_REPO_NAME} to tag ${GIT_TAG}")
-
-            execute_process(
-                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} fetch --depth=${GIT_CLONE_DEPTH} origin ${GIT_TAG}:${GIT_TAG}
-                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} checkout ${GIT_TAG}
-                COMMAND     ${GIT_EXECUTABLE} -C ${QT_CREATOR_SOURCE_DIR} submodule update --init --recursive --depth ${GIT_CLONE_DEPTH}
-                RESULT_VARIABLE     result
-            )
-            if (NOT result EQUAL 0)
-                message(FATAL_ERROR "Failed to switch to your expected tag ${GIT_TAG}")
-            endif()
-        endif()
-
-    endif()
-endif()
-
-
-
-include(ExternalProject)
+get_src_repo_checkout_tag(${QT_CREATOR_SOURCE_DIR} ${GIT_TAG} ${GIT_REPO_URL} ${GIT_REPO_NAME})
+# get_src_repo_checkout_branch(${QT_CREATOR_SOURCE_DIR} ${GIT_BRANCH} ${GIT_REPO_URL} ${GIT_REPO_NAME})
 
 ExternalProject_Add(Qt_Creator
     PREFIX                  ${QT_CREATOR_STATE_DIR}
@@ -102,8 +29,8 @@ ExternalProject_Add(Qt_Creator
         -DCMAKE_PREFIX_PATH=${QT6_INSTALL_DIR}
         -DWITH_QMLDESIGNER=ON
         -DSHOW_BUILD_DATE=ON
-        -DBUILD_DESIGNSTUDIO=ON
-    BUILD_ALWAYS            TRUE
+        # -DBUILD_DESIGNSTUDIO=ON
+    BUILD_ALWAYS            FALSE
     STEP_TARGETS            install
 )
 
