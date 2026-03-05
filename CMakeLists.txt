@@ -8,5 +8,3 @@ include(ExternalProject)
 
 include(qt6.cmake)
 include(qt_creator.cmake)
-
-# add_subdirectory(Qt6AppsDev)
