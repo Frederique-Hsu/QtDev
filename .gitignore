@@ -4,7 +4,7 @@
 *.exe
 # *.txt
 
-*build/
+build/
 qt6_sources/
 qt_creator_sources/
 
@@ -12,6 +12,7 @@ cm/
 QtQuickAppsCollection/
 QtWidgetAppsCollection/
 PatientCartUI/
+Qt6AppsDev/
 references/
 .vscode/
 .vs/

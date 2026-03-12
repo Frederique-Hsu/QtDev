@@ -30,7 +30,7 @@ ExternalProject_Add(Qt_Creator
         -DWITH_QMLDESIGNER=ON
         -DSHOW_BUILD_DATE=ON
         # -DBUILD_DESIGNSTUDIO=ON
-    BUILD_ALWAYS            FALSE
+    BUILD_ALWAYS            ${BUILD_ALWAYS_FLAG}
     STEP_TARGETS            install
 )
 

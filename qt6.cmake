@@ -11,7 +11,6 @@ set(GIT_REPO_NAME       Qt6)
 set(GIT_REPO_URL        https://code.qt.io/qt/qt5.git)
 set(GIT_BRANCH          6.10.2)
 set(GIT_TAG             v6.10.2)
-set(GIT_CLONE_DEPTH     10)
 
 get_src_repo_checkout_tag(${QT6_SOURCE_DIR} ${GIT_TAG} ${GIT_REPO_URL} ${GIT_REPO_NAME})
 
@@ -34,6 +33,6 @@ ExternalProject_Add(Qt6
         -DBUILD_qtgrpc=OFF          # qtgrpc模块依赖于外部的protobuf，因在实际开发中用不到该模块而跳过编译该模块。
         -DBUILD_qtquick3dphysics=OFF    # qtquick3dphysics依赖于图形渲染引擎，不同OS平台实现不一样，无法做到统一。故禁用该模块。
         -DQT_FEATURE_ssl=ON     # 该选项必须启用, 否则在Qt_Creator项目编译时，QNetworkQuery/QSslError会报错。
-    BUILD_ALWAYS            FALSE
+    BUILD_ALWAYS            ${BUILD_ALWAYS_FLAG}
     STEP_TARGETS            install
 )
