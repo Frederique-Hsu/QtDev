@@ -41,7 +41,7 @@ function(check_user_specified_branch_existed repo_dir user_specified_branch)
 
     string(REPLACE "\n" ";" branch_lines "${branch_list}")
     foreach(branch_line ${branch_lines})
-        if (${branch_line} STREQUAL "  ${user_specified_branch}")
+        if (${branch_line} MATCHES "${user_specified_branch}")
             set(USER_SPECIFIED_BRANCH_EXISTED 1 PARENT_SCOPE)
             return()
         endif()
@@ -204,80 +204,72 @@ function(get_src_repo_checkout_tag src_dir git_tag git_repo_url git_repo_name)
             endif()
         endif()
     else()
-        execute_process(
-            COMMAND ${GIT_EXECUTABLE} -C ${src_dir} describe --tags --exact-match HEAD
-            OUTPUT_VARIABLE     current_tag
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-        message(STATUS "current tag of ${git_repo_name} repository is: ${current_tag}")
-
-        if (NOT ${current_tag} STREQUAL ${git_tag})
-            message(STATUS "Switching ${git_repo_name} repository to ${git_tag} tag")
-
-            check_user_specified_tag_existed(${src_dir} ${git_tag})
-            if (USER_SPECIFIED_TAG_EXISTED EQUAL 1)
-                message(STATUS "${git_tag} tag already existed.")
+        check_user_specified_tag_existed(${src_dir} ${git_tag})
+        if (USER_SPECIFIED_TAG_EXISTED EQUAL 1)
+            message(STATUS "local tag ${git_tag} already existed")
+            
+            check_user_specified_branch_existed(${src_dir} ${git_tag})
+            if (USER_SPECIFIED_BRANCH_EXISTED EQUAL 1)
+                message(STATUS "local branch ${git_tag} already existed")
+            else(USER_SPECIFIED_BRANCH_EXISTED EQUAL 0)
+                message(STATUS "local branch ${git_tag} does not exist")
                 
-                check_user_specified_branch_existed(${src_dir} ${git_tag})
-                if (USER_SPECIFIED_BRANCH_EXISTED EQUAL 1)
-                    message(STATUS "${git_tag} branch already existed.")
-
-                    execute_process(COMMAND ${GIT_EXECUTABLE} -C ${src_dir} checkout ${git_tag})
-                    execute_process(
-                        COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule update --init --recursive --depth=10
-                        RESULT_VARIABLE     git_checkout_submodule_update_result
-                    )
-                    if (NOT git_checkout_submodule_update_result EQUAL 0)
-                        message(FATAL_ERROR "Failed to checkout to ${git_tag} branch and update submodules")
-                    endif()
-                elseif(USER_SPECIFIED_BRANCH_EXISTED EQUAL 0)
-                    message(STATUS "${git_tag} branch does not exist")
-
-                    execute_process(
-                        COMMAND ${GIT_EXECUTABLE} -C ${src_dir} switch -c ${git_tag} ${git_tag}
-                        COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule update --init --recursive --depth=10
-                    )
-                endif()
-            elseif (USER_SPECIFIED_TAG_EXISTED EQUAL 0)
-                check_remote_tag_existed(${src_dir} ${git_tag})
-                if (REMOTE_TAG_EXISTED EQUAL 1)
-                    message(STATUS "remote tag ${git_tag} exists, and fetch/switch to local repository.")
-                    execute_process(
-                        COMMAND ${GIT_EXECUTABLE} -C ${src_dir} fetch --depth=10 origin tag ${git_tag}
-                        RESULT_VARIABLE     git_fetch_remote_tag_result
-                    )
-                    if (git_fetch_remote_tag_result EQUAL 0)
-                        execute_process(COMMAND ${GIT_EXECUTABLE} -C ${src_dir} switch -c ${git_tag} ${git_tag})
-                        execute_process(COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule update --init --recursive --depth=10)
-                    endif()
-                elseif(REMOTE_TAG_EXISTED EQUAL 0)
-                    message(FATAL_ERROR "remote tag ${git_tag} does not exist.")
+                execute_process(
+                    COMMAND ${GIT_EXECUTABLE} -C ${src_dir} switch -c ${git_tag} ${git_tag}
+                    RESULT_VARIABLE     git_switch_tag_to_branch_result
+                )
+                if (NOT git_switch_tag_to_branch_result EQUAL 0)
+                    message(FATAL_ERROR "Failed to checkout the ${git_tag} branch")
                 endif()
             endif()
-        endif()
 
-        execute_process(
-            COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule status
-            OUTPUT_VARIABLE     git_submodule_list
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
-        message(STATUS "git_submodule_list = \n${git_submodule_list}")
+            execute_process(
+                COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule update --init --recursive --depth=10
+                RESULT_VARIABLE     git_submodule_update_status_result
+            )
+            if (git_submodule_update_status_result EQUAL 0)
+                message(STATUS "Update ${git_repo_name} repository's submodules PASSED!")
+            else()
+                message(FATAL_ERROR "Update ${git_repo_name} repository's submodules FAILED!")
+            endif()
+        elseif(USER_SPECIFIED_TAG_EXISTED EQUAL 0)
+            message(STATUS "local tag ${git_tag} does not exist")
 
-        if (NOT ${git_submodule_list} STREQUAL "")
-            check_git_submodules_update_status(${src_dir})
-            if (CHECK_SUBMODULES_RESULT EQUAL 1)
-                message(STATUS "${git_repo_name} repository submodules have not yet updated.")
-                message(STATUS "Now update ${git_repo_name} repository submodules")
+            check_remote_tag_existed(${src_dir} ${git_tag})
+            if (REMOTE_TAG_EXISTED EQUAL 1)
+                message(STATUS "remote tag ${git_tag} existed")
+
+                execute_process(
+                    COMMAND ${GIT_EXECUTABLE} -C ${src_dir} fetch --depth=10 --no-tags origin tag ${git_tag}
+                    RESULT_VARIABLE     git_fetch_tag_result
+                )
+                if (NOT git_fetch_tag_result EQUAL 0)
+                    message(FATAL_ERROR "fetch remote tag ${git_tag} FAILED!")
+                else()
+                    message(STATUS "fetch remote tag ${git_tag} PASSED!")
+                endif()
+
+                execute_process(
+                    COMMAND ${GIT_EXECUTABLE} -C ${src_dir} switch -c ${git_tag} ${git_tag}
+                    RESULT_VARIABLE     git_switch_tag_to_branch_result
+                )
+                if (git_switch_tag_to_branch_result EQUAL 0)
+                    message(STATUS "switch to ${git_tag} branch succeeded")
+                else()
+                    message(FATAL_ERROR "switch to ${git_tag} branch failed")
+                endif()
 
                 execute_process(
                     COMMAND ${GIT_EXECUTABLE} -C ${src_dir} submodule update --init --recursive --depth=10
-                    RESULT_VARIABLE     git_submodule_update_result
+                    RESULT_VARIABLE     git_submodule_update_status_result
                 )
-                if (NOT git_submodule_update_result EQUAL 0)
-                    message(FATAL_ERROR "Failed to update the ${git_repo_name} repository's submodules!")
+                if (git_submodule_update_status_result EQUAL 0)
+                    message(STATUS "Update ${git_repo_name} repository's submodules PASSED!")
+                else()
+                    message(FATAL_ERROR "Update ${git_repo_name} repository's submodules FAILED!")
                 endif()
-            elseif(CHECK_SUBMODULES_RESULT EQUAL 0)
-                message(STATUS "Now already updated ${git_repo_name} repository submodules.")
+            elseif(REMOTE_TAG_EXISTED EQUAL 0)
+                message(FATAL_ERROR "remote tag ${git_tag} does not exist, change a valid tag and try again.")
             endif()
         endif()
 
